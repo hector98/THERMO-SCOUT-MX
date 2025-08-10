@@ -1,6 +1,6 @@
 #include "gps.h"
 
-HardwareSerial SerialGPS(2);
+HardwareSerial SerialGPS(1);
 
 float latitude = 0.0;
 float longitude = 0.0;
@@ -11,6 +11,8 @@ bool validFix = false;
 
 void GPS_Init() {
 	SerialGPS.begin(9600, SERIAL_8N1, GPS_RX, GPS_TX); 
+
+	PrintToOLED("GPS Inicializado");
 }
 
 int splitString(String data, char delimiter, String* output, int maxCount) {
@@ -99,37 +101,21 @@ void processRMC(String data) {
 }
 
 
-void printGPSData() {
-	Serial.println("\n--- Datos GPS ---");
-	PrintToOLED("GPS");
-	Serial.print("Fix válido: ");
-	Serial.println(validFix ? "SÍ" : "NO");
+String printGPSData() {
+	String data = "--- Datos GPS ---";
 
 	if (satelites != 0) {
-		Serial.print("Satélites: ");
-		PrintToOLED("Satellites: " + String(satelites));
-		Serial.println(satelites);
-
-		Serial.print("Hora UTC: ");
-		PrintToOLED("Time: " + timeStr);
-		Serial.println(timeStr);
-
-		Serial.print("Fecha: ");
-		PrintToOLED("Date: " + dateStr);
-		Serial.println(dateStr);
-
-		Serial.print("Latitud: ");
-		PrintToOLED("Latitude: " + String(latitude, 6));
-		Serial.println(latitude, 6);
-
-		Serial.print("Longitud: ");
-		PrintToOLED("Longitude: " + String(longitude, 6));
-		Serial.println(longitude, 6);
-
-		Serial.println("-----------------");
+		data += "Satellites: " + String(satelites) + ". ";
+		data += "Time: " + timeStr + ". ";
+		data += "Date: " + dateStr + ". ";
+		data += "Location: ";
+		data += "Longitude: " + String(longitude, 6) + ". ";
+		data += "Latitude: " + String(latitude, 6) + ". ";
 	} else {
-		PrintToOLED("Sin Satelites disponibles");
+		data += "Sin Satelites disponibles";
 	}
+
+	return data;
 }
 
 void GPSRead() {

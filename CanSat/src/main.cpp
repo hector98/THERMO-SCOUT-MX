@@ -4,6 +4,7 @@
 #include "oled.h"
 #include "lora.h"
 #include "gps.h"
+#include "bme.h"
 
 SSD1306Wire display(0x3c, OLED_SDA, OLED_SCL);
 
@@ -11,6 +12,8 @@ SSD1306Wire display(0x3c, OLED_SDA, OLED_SCL);
 TinyGPSPlus gps;
 
 const int MQSensor = 36;
+
+Adafruit_BME280 bme;
 
 void setup() {
 	Serial.begin(115200);
@@ -28,6 +31,10 @@ void setup() {
 
 	// Inicializar GPS
 	GPS_Init();
+
+	// Inicializar BME
+	BME_Init();
+	
 }
 
 void loop() {
@@ -35,8 +42,12 @@ void loop() {
 	float voltage = (rawValue * 3.3) / 4095.0;  // Convertir a voltaje (0-3.3V)
 
 	//GPSRead();
+	String data = "";
+	data += "Valores Atmosfericos: " + BME_ReadData() + ". ";
+	data += "Calidad del aire: " + String(rawValue) + ". ";
+	data += "GPS: " + printGPSData();
 												
-	PrintToOLED("Enviando Datos: MQ: " + String(rawValue));
-	LoRa_Send("valor MQ: " + String(rawValue));
+	PrintToOLED("Enviando Datos: " + data);
+	LoRa_Send(data);
 
 }
