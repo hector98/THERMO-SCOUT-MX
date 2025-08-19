@@ -4,14 +4,14 @@ void LoRa_Init(void) {
 	LoRa.setPins(LORA_CS, LORA_RST, LORA_IRQ);
 
 	if (!LoRa.begin(433E6)) {
-		PrintToOLED("LoRa fallo");
+		//PrintToOLED("LoRa fallo");
 		while (1);
 	}
 
 	LoRa.setTxPower(20);
 	LoRa.setSpreadingFactor(7);
 
-	PrintToOLED("LoRa OK");
+	//PrintToOLED("LoRa OK");
 }
 
 void LoRa_Send(String message) {

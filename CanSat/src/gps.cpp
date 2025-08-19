@@ -12,7 +12,7 @@ bool validFix = false;
 void GPS_Init() {
 	SerialGPS.begin(9600, SERIAL_8N1, GPS_RX, GPS_TX); 
 
-	PrintToOLED("GPS Inicializado");
+	//PrintToOLED("GPS Inicializado");
 }
 
 int splitString(String data, char delimiter, String* output, int maxCount) {
@@ -34,7 +34,6 @@ int splitString(String data, char delimiter, String* output, int maxCount) {
   
   return count;
 }
-
 
 float convertToDegrees(String value) {
   // Formato DDMM.MMMMM -> DD + MM.MMMMM/60

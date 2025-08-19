@@ -8,4 +8,7 @@
 extern Adafruit_BME280 bme;
 
 void BME_Init(void);
-String BME_ReadData(void);
+float getAltitude(void);
+String getHumidity(void);
+String getPressure(void);
+String getTemperature(void);

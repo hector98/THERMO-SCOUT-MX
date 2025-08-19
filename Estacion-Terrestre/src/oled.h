@@ -10,4 +10,5 @@ extern SSD1306Wire display;
 
 void OLED_Init(void);
 void PrintToOLED(String texto);
+void PrintThreeLines(String line1, String line2, String line3);
 

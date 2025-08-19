@@ -1,4 +1,8 @@
 *.pio
+*.odt
+*.ods
+*.pdf
+*.swp
 
 ##### Linux
 *~
