@@ -10,3 +10,4 @@
 
 void LoRa_Init(void);
 void LoRa_Send(String message);
+void LoRa_Receive(void);

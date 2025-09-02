@@ -25,6 +25,6 @@ String readMQSensor(void){
 		calidadStr = "ICA Muy dañino para la salud";
 	}
 
-	return calidadStr;
+	return String(calidad);
 
 }

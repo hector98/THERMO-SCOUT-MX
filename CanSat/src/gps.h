@@ -8,5 +8,7 @@
 extern TinyGPSPlus gps;
 
 void GPS_Init(void);
+String getGPSLocation(void);
 void GPSRead(void);
+void GPS_Data(void);
 String printGPSData(void);

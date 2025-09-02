@@ -2,8 +2,14 @@
 #include <SSD1306Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
+#include "oled.h"
+#include <QMC5883LCompass.h>
 
-//extern Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(); // ID único
 
-void magInit(void);
-String magReadData(void);
+//QMC5883LCompass compass;
+
+#define SDA 4
+#define SCL 15
+
+void Magnetrometro_Init(void);
+String getMagnetometro(void);

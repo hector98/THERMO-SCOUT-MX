@@ -11,6 +11,13 @@ void OLED_Init(void){
 	display.setFont(ArialMT_Plain_16);
 }
 
+void OnlyPrintToOLED(String texto){
+	display.clear();
+	display.drawString(0, 20, texto);
+	display.drawRect(0, 0, 128, 64);
+	display.display();
+}
+
 void PrintToOLED(String texto){
 	int posX = 128;
 	int velocidad = 2;

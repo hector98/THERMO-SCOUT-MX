@@ -16,16 +16,16 @@ float getAltitude(void){
 }
 
 String getTemperature(void){
-	String temperature = "Temperatura: " + String(bme.readTemperature()) + " °C. ";
+	String temperature = "Temperatura: " + String(bme.readTemperature()); // Temperatura en °C
 	return temperature;
 }
 
 String getPressure(void){
-	String pressure = "Presion: " + String(bme.readPressure() / 100.0F) + " hPa. ";
+	String pressure = "Presión: " + String(bme.readPressure() / 100.0F); // Presion en hPa
 	return pressure;
 }
 
 String getHumidity(void){
-	String humidity = "Humedad: " + String(bme.readHumidity()) + " %.";
+	String humidity = "Humedad: " + String(bme.readHumidity()); // Humedad en %
 	return humidity;
 }

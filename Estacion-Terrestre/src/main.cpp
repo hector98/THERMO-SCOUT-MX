@@ -22,44 +22,18 @@ int i = 0;
 int j = 0;
 
 void loop() {
-	//LoRa_Data();
-	int packetSize = LoRa.parsePacket();
-	if (packetSize) {
-		String message = "";
-		while (LoRa.available()) {
-			message += (char)LoRa.read();
-		}
-		//PrintToOLED("Recibiendo de LoRa: " + message);
 
-		String dato = "";
-		while ( j < message.length()) {	
-			if (message[j] != '~') {
-				dato += message[j];
-				j++;
-			}
-			else {
-				datas[i] = dato;
-				i++;
-				dato = "";
-				j++;
-			}
-		}
-		i = 0;
-		j = 0;
-		//PrintToOLED("Recibiendo de LoRa: " + message);
-		PrintThreeLines(datas[0], datas[1], datas[2]);
-	}
+	LoRa_Data();
+
+	delay(10);
+	
 	/*
-	String data = LoRa_Receive();
-	PrintToOLED("Recibiendo: " + data);
+	Serial.println("Esperando datos...");
+	String data = LoRa_Data();
+	LoRa_Send("OK");
+	PrintToOLED("Esperando datos...");
+	PrintToOLED(data);
 
-	if (i < 3) {
-		datas[i] = data;
-		i++;
-	} else {
-		PrintThreeLines(datas[0], datas[1], datas[2]);
-		i = 0;
-	}*/
-
-	//delay(10);
+	Serial.println(data);
+	*/
 }
