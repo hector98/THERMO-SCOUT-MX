@@ -36,6 +36,10 @@ void LoRa_Data() {
 		}
 		Serial.println(message);
 		OnlyPrintToOLED("Recibiendo de LoRa: ");
+		delay(10);
+	}
+	else {
+		OnlyPrintToOLED("Esperando datos...");
 	}
 }
 

@@ -40,7 +40,7 @@ void setup() {
 
 	Acelerometro_Init(); // Inicializar acelerometro
 						 
-	Magnetrometro_Init(); // Inicializar magnetrometro
+	//Magnetrometro_Init(); // Inicializar magnetrometro
 
 	PrintTwoLines("BME280 OK", "LoRa OK", "GPS OK");
 	Serial.println("Iniciando CanSat todo OK");
@@ -57,19 +57,17 @@ void loop() {
     unsigned long currentMillis = millis();
 
     // Leer datos del GPS de forma asíncrona en cada ciclo
-    while (Serial2.available() > 0) {
+    /*while (Serial2.available() > 0) {
         gps.encode(Serial2.read());
-    }
+    }*/
 
-    if (currentMillis - previousMillis >= interval) {
+    //if (currentMillis - previousMillis >= interval) {
 
         PrintOnOLED("Enviando Datos");
-		delay(20);
 
         previousMillis = currentMillis;
 
         String data = "";
-        Serial.println("Enviando Datos");
 
         if (i == 0) {
             alt_init = getAltitude();
@@ -84,7 +82,6 @@ void loop() {
 
 		LoRa_Send(data);
 		data = "";
-		delay(20);
 
         // Datos Atmosféricos
         data += getHumidity() + "~";
@@ -93,40 +90,38 @@ void loop() {
 
 		LoRa_Send(data);
 		data = "";
-		delay(20);
 
         // Calidad del aire
         data += "Calidad del aire:" + String(25) + "~";
 		LoRa_Send(data);
 		data = "";
-		delay(20);
 
-        // Magnetómetro
+        /* Magnetómetro
         data += getMagnetometro() + "~";
 		LoRa_Send(data);
 		data = "";
-		delay(20);
+		delay(5);
 
         // Acelerómetro
         data += getAcelerometro() + "~";
 		LoRa_Send(data);
 		data = "";
-		delay(20);
+		delay(5);
 
         // Localización GPS
         data += getGPSLocation() + "~";
 		LoRa_Send(data);
 		data = "";
-		delay(20);
+		delay(5);
 
         // Liberación y paracaídas
         data += "Liberado: False~";
         data += "Paracaidas: False~";
 		LoRa_Send(data);
 		data = "";
-		delay(20);
+		delay(5);
 
-        PrintOnOLED("Enviando Datos");
-		delay(20);
-    }
+        PrintOnOLED("Datos Enviados");
+		delay(5);*/
+ //   }
 }
